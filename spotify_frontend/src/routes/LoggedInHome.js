@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import spotify_logo from "../assets/images/spotify_logo_white.svg";
 import IconText from "../components/shared/IconText";
 import TextWithHover from "../components/shared/TextWithHover";
+import { useState } from "react";
+import { Howl, Howler } from "howler";
 
 //{
 /* <Card 
@@ -65,6 +67,38 @@ const focusCardsData = [
 ];
 
 const Home = () => {
+  const [soundPlayed, setSoundPlayed] = useState(null);
+  const [isPaused, setIsPaused] = useState(true);
+
+  const playSound = (songSrc) => {
+    if (soundPlayed) {
+      soundPlayed.stop();
+    }
+    let sound = new Howl({
+      src: [songSrc],
+      html5: true,
+    });
+    setSoundPlayed(sound);
+    sound.play();
+    // console.log(sound);
+  };
+
+  const pauseSound = () => {
+    soundPlayed.pause();
+  };
+
+  const togglePlayPause = () => {
+    if (isPaused) {
+      playSound(
+        "https://res.cloudinary.com/dyaelcwxd/video/upload/v1714323664/xasprx8mhjgzyv8s5stt.mp3"
+      );
+      setIsPaused(false);
+    } else {
+      pauseSound();
+      setIsPaused(true);
+    }
+  };
+
   return (
     <div className="h-full w-full bg-app-black">
       <div className="h-9/10 w-full flex">
@@ -152,11 +186,50 @@ const Home = () => {
             className="h-14 w-14 rounded"
           />
           <div className="pl-4">
-            <div className="text-sm hover:underline cursor-pointer">Curtains</div>
-            <div className="text-xs text-gray-500 hover:underline cursor-pointer">Ed Sheeran</div>
+            <div className="text-sm hover:underline cursor-pointer">
+              Curtains
+            </div>
+            <div className="text-xs text-gray-500 hover:underline cursor-pointer">
+              Ed Sheeran
+            </div>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center bg-pink-200">Hello</div>
+        <div className="w-1/2 flex justify-center h-full flex-col items-center">
+          <div className="flex w-1/3 justify-between items-center">
+            {/* Controls for the playing song go here */}
+            <Icon
+              icon="ph:shuffle-fill"
+              fontSize={30}
+              className="cursor-pointer text-gray-500 hover:text-white"
+            />
+            <Icon
+              icon="mdi:skip-previous-outline"
+              fontSize={30}
+              className="cursor-pointer text-gray-500 hover:text-white"
+            />
+            <Icon
+              icon={
+                isPaused
+                  ? "ic:baseline-play-circle"
+                  : "ic:baseline-pause-circle-filled"
+              }
+              fontSize={50}
+              className="cursor-pointer text-gray-500 hover:text-white"
+              onClick={togglePlayPause}
+            />
+            <Icon
+              icon="mdi:skip-next-outline"
+              fontSize={30}
+              className="cursor-pointer text-gray-500 hover:text-white"
+            />
+            <Icon
+              icon="ic:twotone-repeat"
+              fontSize={30}
+              className="cursor-pointer text-gray-500 hover:text-white"
+            />
+          </div>
+          {/* <div>Progress Bar Here</div> */}
+        </div>
         <div className="w-1/4 flex justify-end">Hello</div>
       </div>
     </div>

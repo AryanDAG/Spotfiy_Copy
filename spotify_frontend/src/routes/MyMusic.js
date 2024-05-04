@@ -49,7 +49,7 @@ const MyMusic = () => {
     });
     setSoundPlayed(sound);
     sound.play();
-    console.log(sound);
+    // console.log(sound);
   };
 
   useEffect(() => {
