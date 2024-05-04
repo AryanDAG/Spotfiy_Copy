@@ -1,4 +1,5 @@
 const SingleSongCard = ({info, playSound})=> {
+    // 1 line to get the context value
        return(
         <div className="flex hover:bg-gray-400 hover:bg-opacity-20 p-2 rounded-sm" onClick={()=> {
             playSound(info.track);
