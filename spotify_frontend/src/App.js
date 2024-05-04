@@ -25,15 +25,15 @@ function App() {
           //}
          
         // Logged in Routes
-        <Routes>
         <songContext.Provider value={{currentSong, setCurrentSong}}>
+        <Routes>
           <Route path="/" element={<HelloComponent/>} />
           <Route path="/home" element={<LoggedInHomeComponent />} />
           <Route path="/uploadSong" element={<UploadSong/>}/>
           <Route path="/myMusic" element={<MyMusic/>}/>
           <Route path="*" element={<Navigate to="home"/>}/>
-        </songContext.Provider>
         </Routes>
+        </songContext.Provider>
         ) : (
         // Logged Out Routes
           <Routes>
