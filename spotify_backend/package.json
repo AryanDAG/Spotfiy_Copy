@@ -4,7 +4,8 @@
   "description": "This will contain the backend code for the spotify clone",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "start": "nodemon index"
   },
   "author": "Aryan Gupta",
   "license": "ISC",

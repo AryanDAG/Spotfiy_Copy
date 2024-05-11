@@ -24,18 +24,20 @@ export const makeAuthenticatedPOSTRequest = async (route, body) => {
         body: JSON.stringify(body),
     });
     const formattedResponse = await response.json();
+   console.log("llllll",formattedResponse)
     return formattedResponse;
 };
 
 export const makeAuthenticatedGETRequest = async (route) => {
     const token = getToken();
-    const response = await fetch(backendUrl + route, {
+    const response = await fetch(backendUrl + route, { 
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
         },
     });
+    // console.log(formattedResponse)
     const formattedResponse = await response.json();
     return formattedResponse;
 };

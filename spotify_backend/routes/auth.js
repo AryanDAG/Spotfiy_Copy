@@ -54,6 +54,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   // Step 2: Check if a user with the guen email exists. If not, the credentials are invalid.
   const user = await User.findOne({ email: email });
+  console.log(user)
   if (!user) {
     return res.status(403).json({ err: "Invalid credentials" });
   }
@@ -70,6 +71,7 @@ router.post("/login", async (req, res) => {
 
   // Step 4: If the credentials are correct, return a token to the user.
   const token = await getToken(user.email, user);
+  console.log(token)
   const userToReturn = { ...user.toJSON(), token };
   delete userToReturn.password;
   return res.status(200).json(userToReturn);

@@ -25,7 +25,9 @@ router.get("/get/mysongs", passport.authenticate("jwt", {session:false}),
  async (req,res) => {
       // const currentUser = req.user;
       // We need to get all songs where artist id == currentUser._id
+      console.log(req)
       const songs = await Song.find({artist: req.user._id}).populate("artist");
+      console.log("hfhfhfhfhfh",req.user.id)
       return res.status(200).json({data:songs});
  } 
 );
@@ -61,7 +63,7 @@ router.get(
 
    // name:songName ----> exact name matching. Vanilla, Vanila
    // Pattern matching instead of direct name matching.
-   const songs = await Song.find({name:songName});
+   const songs = await Song.find({name:songName}).populate("artist");
    return res.status(200).json({data: songs});
  }
 );

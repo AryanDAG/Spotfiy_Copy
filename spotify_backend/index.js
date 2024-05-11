@@ -46,7 +46,7 @@ opts.secretOrKey = "thisKeyIsSupposedToBeSecret";
 passport.use(new JwtStrategy(opts, async function(jwt_payload, done) {
     console.log(jwt_payload)
     try {
-        const user = await User.findOne({id: jwt_payload.sub});
+        const user = await User.findOne({_id: jwt_payload.identifier});
         if (user) {
             return done(null, user);
         } else {
