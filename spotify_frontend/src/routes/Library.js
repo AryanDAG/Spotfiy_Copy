@@ -21,7 +21,7 @@ const Library = () => {
             <Card
               key={JSON.stringify(item)}
               title={item.name}
-              description=""
+              description=""  
               imgUrl={item.thumbnail}
               playlistId={item._id}
             />

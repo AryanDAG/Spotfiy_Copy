@@ -4,3 +4,5 @@ spotify_frontend/node_modules/
 ffffff
 
 src/config.js
+
+vercel.json
